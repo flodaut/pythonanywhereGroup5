@@ -19,4 +19,4 @@ class ServiceForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('product_image', 'product', 'p_description', 'price',)
+        fields = ('product_image', 'product', 'p_description', 'price','quantity')
