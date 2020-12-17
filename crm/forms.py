@@ -5,7 +5,7 @@ from .models import Customer, Service, Product
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ('cust_name', 'organization', 'role', 'bldgroom', 'account_number', 'address',
+        fields = ('cust_name', 'role', 'account_number', 'address',
                   'city', 'state', 'zipcode', 'email', 'phone_number')
 
 
@@ -19,4 +19,4 @@ class ServiceForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('cust_name', 'product', 'p_description', 'quantity', 'pickup_time', 'charge',)
+        fields = ('product_image', 'product', 'p_description', 'price',)

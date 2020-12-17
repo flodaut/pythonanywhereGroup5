@@ -1,18 +1,20 @@
 from django.db import models
 
 # Create your models here.
+from django.forms import ImageField
 
 from django.utils import timezone
 from django.db import models
+import os
 
 
 # Create your models here.
 class Customer(models.Model):
     cust_name = models.CharField(max_length=50)
-    organization = models.CharField(max_length=100, blank=True)
+    #organization = models.CharField(max_length=100, blank=True)
     role = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    bldgroom = models.CharField(max_length=100)
+    #bldgroom = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
     account_number = models.IntegerField(blank=False, null=False)
     city = models.CharField(max_length=50)
@@ -59,18 +61,19 @@ class Service(models.Model):
 
         def __str__(self):
             return str(self.cust_name)
-
+def get_image_path(instance, filename):
+    return os.path.join('photos', str(instance.id), filename)
 
 class Product(models.Model):
-    cust_name = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='products')
+    #cust_name = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='products')
+    #product_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    product_image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
     product = models.CharField(max_length=100)
     p_description = models.TextField()
     quantity = models.IntegerField()
-    pickup_time = models.DateTimeField(
-        default=timezone.now)
-    charge = models.DecimalField(max_digits=10, decimal_places=2)
-    created_date = models.DateTimeField(
-        default=timezone.now)
+    #pickup_time = models.DateTimeField(default=timezone.now)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    created_date = models.DateTimeField(default=timezone.now)
     updated_date = models.DateTimeField(auto_now_add=True)
 
     def created(self):

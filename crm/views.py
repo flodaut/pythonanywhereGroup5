@@ -5,6 +5,7 @@ from django.db.models import Sum
 from _decimal import Decimal
 from .models import *
 from .forms import *
+from cart.forms import CartAddProductForm
 
 now = timezone.now()
 
@@ -91,7 +92,8 @@ def service_edit(request, pk):
 @login_required
 def product_list(request):
     products = Product.objects.filter(created_date__lte=timezone.now())
-    return render(request, 'crm/product_list.html', {'products': products})
+    cart_product_form = CartAddProductForm()
+    return render(request, 'crm/product_list.html', {'products': products,  'cart_product_form': cart_product_form})
 
 
 @login_required

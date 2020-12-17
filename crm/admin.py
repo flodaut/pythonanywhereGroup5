@@ -18,10 +18,10 @@ class CustomerList(admin.ModelAdmin):
 
 
 class ProductList(admin.ModelAdmin):
-    list_display = ('cust_name', 'product', 'pickup_time')
-    list_filter = ('cust_name', 'pickup_time')
-    search_fields = ('cust_name',)
-    ordering = ['cust_name']
+    list_display = ('product',)
+    list_filter = ('product',)
+    search_fields = ('product',)
+    ordering = ['product']
 
 
 admin.site.register(Customer)

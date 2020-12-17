@@ -16,6 +16,8 @@ from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.template.context_processors import media
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'crm.apps.CrmConfig',
     'mathfilters',
     'django.contrib.humanize',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -126,5 +130,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
+MEDIA_URL = '/images/'
+
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+CART_SESSION_ID = 'cart'
